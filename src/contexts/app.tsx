@@ -1,10 +1,8 @@
-'use client'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import {
-  // createContext,
-  ReactNode,
-} from 'react'
+"use client";
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ReactNode } from "react";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,11 +12,11 @@ const queryClient = new QueryClient({
       // staleTime: 60000,
     },
   },
-})
+});
 
 type AppProviderProps = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 export default function AppProvider({ children }: AppProviderProps) {
   return (
@@ -26,5 +24,5 @@ export default function AppProvider({ children }: AppProviderProps) {
       {children}
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
-  )
+  );
 }

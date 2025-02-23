@@ -1,6 +1,7 @@
 "use client";
 import { PageData } from "@/lib/types/home";
 import { useAllPages } from "@/queries/useHome";
+import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 
@@ -15,21 +16,42 @@ export default function Block() {
     <section className="pt-20 ct-container">
       <div className="flex flex-nowrap items-center justify-center gap-10 w-full">
         <div className="hidden sm:block w-full h-[1px] bg-[#BBB]"></div>
-        <h2 className="text-[24px] leading-normal sm:text-[32px] md:text-[40px] xl:text-[52px] font-semibold sm:leading-[60px] uppercase text-acent text-center  max-w-full sm:max-w-[70%] whitespace-nowrap">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-[24px] leading-normal sm:text-[32px] md:text-[40px] xl:text-[52px] font-semibold sm:leading-[60px] uppercase text-acent text-center  max-w-full sm:max-w-[70%] whitespace-nowrap"
+        >
           {t("Title1")}
-        </h2>
+        </motion.h2>
         <div className="hidden sm:block w-full h-[1px] bg-[#BBB]"></div>
       </div>
       <div className="mt-4 mb-20 text-[24px] leading-[30px] text-center w-full">
         {data?.payload[0]?.bloc_1?.subtitle}
       </div>
 
-      <ul className="grid grid-cols-1 sm:grid-cols-3 gap-8 xl:gap-6">
+      <motion.ul
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: { opacity: 0, y: 20 },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: { staggerChildren: 0.2 },
+          },
+        }}
+        className="grid grid-cols-1 sm:grid-cols-3 gap-8 xl:gap-6"
+      >
         {data?.payload[0]?.bloc_1?.cases?.map((item, index: number) => (
-          <li
+          <motion.li
             key={item.category}
-            // className="flex flex-col"
-            className={`flex flex-col ${
+            variants={{
+              hidden: { opacity: 0, y: 20, scale: 0.95 },
+              visible: { opacity: 1, y: 0, scale: 1 },
+            }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className={`flex flex-col cursor-pointer ${
               index === 1 ? "sm:-translate-y-8 md:-translate-y-[45px]" : ""
             }`}
           >
@@ -62,9 +84,9 @@ export default function Block() {
                 height="20"
               />
             </button>
-          </li>
+          </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     </section>
   );
 }

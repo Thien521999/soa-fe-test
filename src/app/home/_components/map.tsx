@@ -12,7 +12,6 @@ export default function Map() {
     x: number;
     y: number;
   } | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
   const points = [
     {

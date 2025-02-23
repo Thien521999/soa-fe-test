@@ -1,19 +1,25 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-'use client'
+"use client";
 
-import { PageData } from '@/lib/types/home'
-import { useAllPages } from '@/queries/useHome'
-import { useLocale } from 'next-intl'
-import Image from 'next/image'
+import { PageData } from "@/lib/types/home";
+import { useAllPages } from "@/queries/useHome";
+import { motion } from "framer-motion";
+import { useLocale } from "next-intl";
+import Image from "next/image";
 
 export default function Experiences() {
-  const lang = useLocale()
-  const { data } = useAllPages(lang as 'en' | 'fr') as {
-    data: PageData | undefined
-    isPending: boolean
-  }
+  const lang = useLocale();
+  const { data } = useAllPages(lang as "en" | "fr") as {
+    data: PageData | undefined;
+    isPending: boolean;
+  };
   return (
-    <section className="max-w-[1304px] px-0 sm:px-8 lg:px-8 w-full mx-auto">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="max-w-[1304px] px-0 sm:px-8 lg:px-8 w-full mx-auto"
+    >
       <div className="hidden sm:flex gap-6">
         <div className="flex flex-col sm:gap-8 xl:gap-[60px]">
           <h3 className="sm:text-[32px] md:text-[40px] xl:text-[48px] font-semibold leading-[60px] uppercase text-acent w-[90%]">
@@ -44,7 +50,13 @@ export default function Experiences() {
             </div>
           </div>
         </div>
-        <div className="relative w-full h-full sm:w-[369px] sm:h-[524px] md:w-[403px] md:h-[412px] xl:w-[503px] xl:h-[574px] flex-shrink-0">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="relative w-full h-full sm:w-[369px] sm:h-[524px] md:w-[403px] md:h-[412px] xl:w-[503px] xl:h-[574px] flex-shrink-0"
+        >
           <Image
             src="/images/cream.jpg"
             alt="cream"
@@ -52,12 +64,23 @@ export default function Experiences() {
             height={574}
             className="w-full h-full object-cover rounded-[10px]"
           />
-        </div>
+        </motion.div>
       </div>
 
       {/* mobile */}
-      <div className="relative block sm:hidden w-full h-[533px] flex-shrink-0 px-4 py-8">
-        <Image src="/images/cream.jpg" alt="cream" fill className="w-full h-full object-cover" />
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="relative block sm:hidden w-full h-[533px] flex-shrink-0 px-4 py-8"
+      >
+        <Image
+          src="/images/cream.jpg"
+          alt="cream"
+          fill
+          className="w-full h-full object-cover"
+        />
 
         <div className="flex flex-col gap-8 rounded-[16px] bg-white/60 backdrop-blur-[7.5px] px-3 py-4">
           <h3 className="text-[24px] font-semibold uppercase text-acent">
@@ -79,12 +102,16 @@ export default function Experiences() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <ul className="flex flex-wrap items-center justify-center sm:justify-between gap-3 mt-5 sm:mt-8 md:mt-20 lg:mt-[82px]">
         {data?.payload[0]?.bloc_4?.pictos?.map((item, index) => (
-          <li
+          <motion.li
             key={item.title}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
+            viewport={{ once: true }}
             className="flex flex-col items-center justify-center text-center max-w-[200px]"
           >
             <div className="relative bg-[#0E9594] rounded-full w-10 h-10 sm:w-[44px] sm:h-[44px] md:w-[56px] md:h-[56px] xl:w-[58px] xl:h-[58px] flex items-center justify-center">
@@ -92,14 +119,14 @@ export default function Experiences() {
                 <Image
                   src={
                     index === 0
-                      ? '/icons/authenticite.svg'
+                      ? "/icons/authenticite.svg"
                       : index === 1
-                      ? '/icons/respect.svg'
+                      ? "/icons/respect.svg"
                       : index === 2
-                      ? '/icons/disversite.svg'
+                      ? "/icons/disversite.svg"
                       : index === 3
-                      ? '/icons/people.svg'
-                      : '/icons/smile.svg'
+                      ? "/icons/people.svg"
+                      : "/icons/smile.svg"
                   }
                   alt="authenticite"
                   width="34"
@@ -113,9 +140,9 @@ export default function Experiences() {
             <span className="mt-1 xl:mt-2 text-[14px] xl:text-[18px] text-[rgba(86, 44, 44, 0.80);] leading-6">
               {item.description}
             </span>
-          </li>
+          </motion.li>
         ))}
       </ul>
-    </section>
-  )
+    </motion.section>
+  );
 }
