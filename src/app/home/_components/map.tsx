@@ -18,8 +18,8 @@ export default function Map() {
     {
       id: "point1",
       name: "Location 1",
-      x: 33,
-      y: 42,
+      x: 30,
+      y: 32,
       src: "/images/MapPin.png",
       activities: ["Tour", "Photo"],
     },
