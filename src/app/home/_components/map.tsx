@@ -15,19 +15,17 @@ export default function Map() {
     y: number;
   } | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [scale, setScale] = useState(1);
 
   const lang = useLocale();
   const { data } = useAllPages(lang as "en" | "fr") as {
     data: PageData | undefined;
     isPending: boolean;
   };
-  console.log(data);
 
   const points = [
     {
       id: "point1",
-      name: "Eiffel Tower",
+      name: "Location 1",
       x: 33,
       y: 42,
       src: "/images/MapPin.png",
@@ -35,7 +33,7 @@ export default function Map() {
     },
     {
       id: "point2",
-      name: "Louvre Museum",
+      name: "Location 2",
       x: 30,
       y: 60,
       src: "/images/MapPin2.png",
@@ -52,14 +50,11 @@ export default function Map() {
   ];
 
   const handleZoom = (x: number, y: number) => {
-    console.log({ x, y });
     if (selectedPoint?.x === x && selectedPoint?.y === y) {
       // Reset nếu nhấn vào điểm đã chọn
       setSelectedPoint(null);
-      setScale(1);
     } else {
       setSelectedPoint({ x, y });
-      setScale(2);
     }
   };
 
@@ -109,16 +104,35 @@ export default function Map() {
         </ul>
 
         <motion.div
+          // cách 1
+          // animate={{
+          //   // scale: scale,
+          //   x: selectedPoint ? `${50 - selectedPoint.x}%` : "0%",
+          //   y: selectedPoint ? `${50 - selectedPoint.y}%` : "0%",
+          //   scale: selectedPoint ? 2 : 1, // Phóng nhưng không làm vỡ layout
+          //   clipPath: selectedPoint
+          //     ? "inset(25% 25% 25% 25%)" // Giữ phần trung tâm xung quanh điểm click
+          //     : "inset(0% 0% 0% 0%)", // Hiển thị toàn bộ khi không chọn
+          // }}
+          // transition={{ duration: 0.5 }}
+
+          // cach 2
+          // animate={{
+          //   scale: selectedPoint ? 2 : 1, // Zoom vào điểm chọn
+          //   transformOrigin: selectedPoint
+          //     ? `${selectedPoint.x}% ${selectedPoint.y}%`
+          //     : "center", // Xác định điểm zoom chính xác
+          // }}
+          // transition={{ duration: 0.5, ease: "easeOut" }}
+
+          // cach 3
           animate={{
-            // scale: scale,
-            x: selectedPoint ? `${50 - selectedPoint.x}%` : "0%",
-            y: selectedPoint ? `${50 - selectedPoint.y}%` : "0%",
-            scale: selectedPoint ? 2 : 1, // Phóng nhưng không làm vỡ layout
             clipPath: selectedPoint
-              ? "inset(25% 25% 25% 25%)" // Giữ phần trung tâm xung quanh điểm click
-              : "inset(0% 0% 0% 0%)", // Hiển thị toàn bộ khi không chọn
+              ? `circle(15% at ${selectedPoint.x}% ${selectedPoint.y}%)`
+              : "circle(100% at 50% 50%)", // Hiển thị toàn bộ khi không chọn
+            scale: selectedPoint ? 1.5 : 1, // Phóng nhẹ khi chọn điểm
           }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className="relative w-full h-[550px] sm:h-[698px] overflow-hidden"
         >
           <Image
