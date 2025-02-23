@@ -41,7 +41,7 @@ export default function Footer() {
             <li className="bg-acent w-8 h-8 rounded-full flex items-center justify-center">
               <Image
                 src="/icons/icon_facebook.svg"
-                alt="facebook"
+                alt="icon_facebook"
                 width="24"
                 height="24"
               />
@@ -49,7 +49,7 @@ export default function Footer() {
             <li className="bg-acent w-8 h-8 rounded-full flex items-center justify-center">
               <Image
                 src="/icons/icon_instagram.svg"
-                alt="facebook"
+                alt="icon_instagram"
                 width="24"
                 height="24"
               />
@@ -57,7 +57,7 @@ export default function Footer() {
             <li className="bg-acent w-8 h-8 rounded-full flex items-center justify-center">
               <Image
                 src="/icons/youtube.svg"
-                alt="facebook"
+                alt="youtube"
                 width="24"
                 height="24"
               />
@@ -75,16 +75,16 @@ export default function Footer() {
           <ul className="hidden sm:flex items-center justify-center gap-4">
             <li className="bg-acent w-8 h-8 rounded-full flex items-center justify-center">
               <Image
-                src="/icons/facebook.svg"
-                alt="facebook"
+                src="/icons/icon_facebook.svg"
+                alt="icon_facebook"
                 width="24"
                 height="24"
               />
             </li>
             <li className="bg-acent w-8 h-8 rounded-full flex items-center justify-center">
               <Image
-                src="/icons/instagram.svg"
-                alt="facebook"
+                src="/icons/icon_instagram.svg"
+                alt="icon_instagram"
                 width="24"
                 height="24"
               />
@@ -92,7 +92,7 @@ export default function Footer() {
             <li className="bg-acent w-8 h-8 rounded-full flex items-center justify-center">
               <Image
                 src="/icons/youtube.svg"
-                alt="facebook"
+                alt="youtube"
                 width="24"
                 height="24"
               />
