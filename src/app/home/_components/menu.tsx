@@ -51,7 +51,7 @@ export default function Menu({ menu }: MenuProps) {
           />
         </label>
 
-        <div className="text-4 font-bold text-gray-800 mb-6">LOGO SAMPLE</div>
+        <div className="text-4 font-bold text-gray-800 mb-6">Logo 🍀</div>
         <ul className="flex flex-col gap-2 text-4 font-medium leading-6 opacity-90">
           {menu
             ? menu?.map((item) => (

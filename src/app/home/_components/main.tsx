@@ -3,8 +3,8 @@ import Map from "./map";
 // import Titre from './titre'
 import Block from "./block";
 import Experiences from "./experiences";
-import Memory from "./memory";
 import Explore from "./explore";
+import Memory from "./memory";
 
 export default function Main() {
   return (

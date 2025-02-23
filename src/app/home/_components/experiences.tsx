@@ -1,17 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-'use client'
+"use client";
 
-import { PageData } from '@/lib/types/home'
-import { useAllPages } from '@/queries/useHome'
-import { useLocale } from 'next-intl'
-import Image from 'next/image'
+import { PageData } from "@/lib/types/home";
+import { useAllPages } from "@/queries/useHome";
+import { useLocale } from "next-intl";
+import Image from "next/image";
 
 export default function Experiences() {
-  const lang = useLocale()
-  const { data } = useAllPages(lang as 'en' | 'fr') as {
-    data: PageData | undefined
-    isPending: boolean
-  }
+  const lang = useLocale();
+  const { data } = useAllPages(lang as "en" | "fr") as {
+    data: PageData | undefined;
+    isPending: boolean;
+  };
   return (
     <section className="max-w-[1304px] px-0 sm:px-8 lg:px-8 w-full mx-auto">
       <div className="hidden sm:flex gap-6">
@@ -57,7 +56,12 @@ export default function Experiences() {
 
       {/* mobile */}
       <div className="relative block sm:hidden w-full h-[533px] flex-shrink-0 px-4 py-8">
-        <Image src="/images/cream.jpg" alt="cream" fill className="w-full h-full object-cover" />
+        <Image
+          src="/images/cream.jpg"
+          alt="cream"
+          fill
+          className="w-full h-full object-cover"
+        />
 
         <div className="flex flex-col gap-8 rounded-[16px] bg-white/60 backdrop-blur-[7.5px] px-3 py-4">
           <h3 className="text-[24px] font-semibold uppercase text-acent">
@@ -92,14 +96,14 @@ export default function Experiences() {
                 <Image
                   src={
                     index === 0
-                      ? '/icons/authenticite.svg'
+                      ? "/icons/authenticite.svg"
                       : index === 1
-                      ? '/icons/respect.svg'
+                      ? "/icons/respect.svg"
                       : index === 2
-                      ? '/icons/disversite.svg'
+                      ? "/icons/disversite.svg"
                       : index === 3
-                      ? '/icons/people.svg'
-                      : '/icons/smile.svg'
+                      ? "/icons/people.svg"
+                      : "/icons/smile.svg"
                   }
                   alt="authenticite"
                   width="34"
@@ -117,5 +121,5 @@ export default function Experiences() {
         ))}
       </ul>
     </section>
-  )
+  );
 }
