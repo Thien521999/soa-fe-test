@@ -1,24 +1,24 @@
-'use client'
+"use client";
 
-import LocaleSwicher from '@/components/ui/LocaleSwicher'
-import { useLocale } from 'next-intl'
-import Image from 'next/image'
-import { useAllPages } from '../../../queries/useHome'
-import Menu from './menu'
+import LocaleSwicher from "@/components/ui/LocaleSwicher";
+import { useLocale } from "next-intl";
+import Image from "next/image";
+import { useAllPages } from "../../../queries/useHome";
+import Menu from "./menu";
 
 interface PageData {
   payload: {
-    head_menu: string[]
-  }[]
+    head_menu: string[];
+  }[];
 }
 
 export default function Header() {
-  const lang = useLocale()
+  const lang = useLocale();
 
-  const { data } = useAllPages(lang as 'en' | 'fr') as {
-    data: PageData | undefined
-    isPending: boolean
-  }
+  const { data } = useAllPages(lang as "en" | "fr") as {
+    data: PageData | undefined;
+    isPending: boolean;
+  };
 
   return (
     <div className="w-full">
@@ -58,7 +58,13 @@ export default function Header() {
                   />
                 </li>
                 <li className="cursor-pointer">
-                  <Image src="/icons/Fishing.svg" alt="Mountains" width="28" height="28" priority />
+                  <Image
+                    src="/icons/Fishing.svg"
+                    alt="Mountains"
+                    width="28"
+                    height="28"
+                    priority
+                  />
                 </li>
                 <li className="cursor-pointer">
                   <Image
@@ -91,30 +97,46 @@ export default function Header() {
 
       {/* Image Full-width */}
       <section className="w-full min-h-screen relative">
-        <Image src="/images/bg_home.jpg" alt="bg_home" fill className="object-cover" priority />
+        <Image
+          src="/images/bg_home.jpg"
+          alt="bg_home"
+          fill
+          className="object-cover"
+          priority
+        />
 
         {/* icons */}
         <ul className="absolute bottom-[60px] sm:bottom-16 xl:bottom-[120px] flex justify-around items-center max-w-[1304px] w-full left-1/2 -translate-x-1/2 px-4 sm:px-8 lg:px-8 pt-6 xl:pt-5  border-t border-[rgba(238,238,238,0.20)]">
-          {Array.from({ length: 3 }).map((_, index) => (
-            <li key={index}>
-              <Image
-                src="/icons/Mountains_big.svg"
-                alt="Mountains"
-                width="40"
-                height="40"
-                priority
-                className="hidden sm:block"
-              />
-              <Image
-                src="/icons/Mountains_big.svg"
-                alt="Mountains"
-                width="24"
-                height="24"
-                priority
-                className="block sm:hidden"
-              />
-            </li>
-          ))}
+          <li>
+            <Image
+              src="/icons/Mountains_big.svg"
+              alt="Mountains_big"
+              width="40"
+              height="40"
+              priority
+              className="w-[24px] h-[24px] sm:w-10 sm:h-10"
+            />
+          </li>
+          <li>
+            <Image
+              src="/icons/FishingIconBig.svg"
+              alt="FishingIconBig"
+              width="40"
+              height="40"
+              priority
+              className="w-[24px] h-[24px] sm:w-10 sm:h-10"
+            />
+          </li>
+          <li>
+            <Image
+              src="/icons/CrosshairBig.svg"
+              alt="CrosshairBig"
+              width="40"
+              height="40"
+              priority
+              className="w-[24px] h-[24px] sm:w-10 sm:h-10"
+            />
+          </li>
         </ul>
 
         <div className="absolute bottom-5 sm:bottom-10 lg:bottom-10 xl:bottom-20 right-4 sm:right-6 lg:right-6 xl:right-[148px] bg-acent rounded-full w-[34px] h-[34px] sm:w-14 sm:h-14 flex items-center justify-center cursor-pointer">
@@ -123,17 +145,10 @@ export default function Header() {
             alt="Chats"
             width="32"
             height="32"
-            className="hidden sm:block"
-          />
-          <Image
-            src="/icons/Chats.svg"
-            alt="Chats"
-            width="18"
-            height="18"
-            className="block sm:hidden"
+            className="w-[18px] h-[18px] sm:w-8 sm:h-8"
           />
         </div>
       </section>
     </div>
-  )
+  );
 }
