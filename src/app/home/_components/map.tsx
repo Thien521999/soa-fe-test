@@ -3,15 +3,18 @@
 import { PageData } from "@/lib/types/home";
 import { useAllPages } from "@/queries/useHome";
 import { motion } from "framer-motion";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { useState } from "react";
 
 export default function Map() {
+  const t = useTranslations();
+
   const [selectedPoint, setSelectedPoint] = useState<{
     x: number;
     y: number;
   } | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [scale, setScale] = useState(1);
 
   const lang = useLocale();
@@ -39,7 +42,7 @@ export default function Map() {
     },
     {
       id: "point3",
-      name: "Louvre Museum",
+      name: "Location 3",
       x: 50,
       y: 47,
       src: "/images/MapPin3.png",
@@ -72,7 +75,8 @@ export default function Map() {
         <div className="flex flex-nowrap items-center justify-center gap-10 w-full">
           <div className="hidden sm:block w-full h-[1px] bg-[#BBB]"></div>
           <h2 className="text-[24px] leading-normal sm:text-[32px] md:text-[40px] xl:text-[52px] font-semibold sm:leading-[60px] uppercase text-acent text-center max-w-full sm:max-w-[70%] whitespace-nowrap">
-            {data?.payload[0]?.bloc_2?.title}
+            {/* {data?.payload[0]?.bloc_2?.title} */}
+            {t("Title2")}
           </h2>
           <div className="hidden sm:block w-full h-[1px] bg-[#BBB]"></div>
         </div>
@@ -99,9 +103,13 @@ export default function Map() {
 
         <motion.div
           animate={{
-            scale: scale,
+            // scale: scale,
             x: selectedPoint ? `${50 - selectedPoint.x}%` : "0%",
             y: selectedPoint ? `${50 - selectedPoint.y}%` : "0%",
+            scale: selectedPoint ? 2 : 1, // Phóng nhưng không làm vỡ layout
+            clipPath: selectedPoint
+              ? "inset(25% 25% 25% 25%)" // Giữ phần trung tâm xung quanh điểm click
+              : "inset(0% 0% 0% 0%)", // Hiển thị toàn bộ khi không chọn
           }}
           transition={{ duration: 0.5 }}
           className="relative w-full h-[550px] sm:h-[698px] overflow-hidden"
@@ -122,19 +130,29 @@ export default function Map() {
               height="40"
             />
             <h3 className="text-5 font-medium leading-5 text-main shadow-[0px_0px_8px_rgba(0,0,0,0.1)]">
-              Emplacement
+              {t("Location")}
             </h3>
           </div>
 
           {points.map((point) => (
             <motion.div
-              className="absolute w-8 h-[42px] cursor-pointer"
-              style={{ top: `${point.y}%`, left: `${point.x}%` }}
+              className="absolute w-8 h-[42px] cursor-pointer will-change-transform"
+              style={{
+                top: `${point.y}%`,
+                left: `${point.x}%`,
+                transform: selectedPoint ? "scale(1)" : "scale(1)", // Luôn giữ icon rõ
+              }}
               onClick={() => handleZoom(point.x, point.y)}
               whileHover={{ scale: 1.2 }}
               key={point.id}
             >
-              <Image src={point.src} alt="MapPin" width="32" height="42" />
+              <Image
+                src={point.src}
+                alt="MapPin"
+                width="32"
+                height="42"
+                className="will-change-transform"
+              />
             </motion.div>
           ))}
         </motion.div>
@@ -168,7 +186,7 @@ export default function Map() {
               className="mt-3 px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-sm sm:text-base font-medium rounded-lg shadow-md transition-all duration-200"
               onClick={() => handleZoom(selectedPoint.x, selectedPoint.y)}
             >
-              Đóng
+              {t("Close")}
             </button>
           </motion.div>
         )}
