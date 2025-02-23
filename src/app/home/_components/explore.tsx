@@ -36,7 +36,7 @@ export default function Explore() {
             <CustomButtom
               type="contained"
               name={`${data?.payload[0]?.bloc_6.button}`}
-              className="w-[145px] xl:w-[152px] mx-auto"
+              className="!w-[145px] xl:w-[152px] mx-auto"
             />
           </div>
         </div>

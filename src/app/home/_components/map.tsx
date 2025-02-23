@@ -22,6 +22,7 @@ export default function Map() {
     data: PageData | undefined;
     isPending: boolean;
   };
+  console.log(data);
 
   const points = [
     {
@@ -51,6 +52,7 @@ export default function Map() {
   ];
 
   const handleZoom = (x: number, y: number) => {
+    console.log({ x, y });
     if (selectedPoint?.x === x && selectedPoint?.y === y) {
       // Reset nếu nhấn vào điểm đã chọn
       setSelectedPoint(null);
@@ -75,14 +77,17 @@ export default function Map() {
         <div className="flex flex-nowrap items-center justify-center gap-10 w-full">
           <div className="hidden sm:block w-full h-[1px] bg-[#BBB]"></div>
           <h2 className="text-[24px] leading-normal sm:text-[32px] md:text-[40px] xl:text-[52px] font-semibold sm:leading-[60px] uppercase text-acent text-center max-w-full sm:max-w-[70%] whitespace-nowrap">
-            {/* {data?.payload[0]?.bloc_2?.title} */}
             {t("Title2")}
           </h2>
           <div className="hidden sm:block w-full h-[1px] bg-[#BBB]"></div>
         </div>
         <ul className="flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-5 py-5 sm:py-6 xl:py-8">
-          {data?.payload[0]?.bloc_2?.cases?.map((item, index: number) => (
-            <li className="ct-activite" key={item}>
+          {points?.map((item, index: number) => (
+            <li
+              className="ct-activite"
+              key={item.id}
+              onClick={() => handleZoom(item.x, item.y)}
+            >
               <Image
                 src={
                   index === 0
@@ -96,7 +101,9 @@ export default function Map() {
                 height="25"
                 className="object-cover w-5 h-5 sm:w-[25px] sm:height-[25px] rounded-lg"
               />
-              <span className="ct-activite-text"> {item}</span>
+              <span className="ct-activite-text">
+                {`${t("Activity")} ${index + 1}`}
+              </span>
             </li>
           ))}
         </ul>
