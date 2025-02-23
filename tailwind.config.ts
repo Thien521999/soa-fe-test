@@ -11,6 +11,17 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        main: "var(--main)",
+        acent: "#F2542D",
+      },
+      animation: {
+        fadeIn: "fadeIn 0.3s linear",
+      },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
       },
     },
   },
