@@ -1,9 +1,10 @@
-import Activities from './activities'
-import Map from './map'
+import Activities from "./activities";
+import Map from "./map";
 // import Titre from './titre'
-import Block from './block'
-import Experiences from './experiences'
-import Memory from './memory'
+import Block from "./block";
+import Experiences from "./experiences";
+import Memory from "./memory";
+import Explore from "./explore";
 
 export default function Main() {
   return (
@@ -27,7 +28,7 @@ export default function Main() {
       <Memory />
 
       {/* Explorez avec BASIC dès aujourd’hu */}
-      {/* <aside className="ct-container">Explorez avec BASIC dès aujourd’hu</aside> */}
+      <Explore />
     </main>
-  )
+  );
 }

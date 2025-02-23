@@ -1,21 +1,22 @@
-'use client'
-import { PageData } from '@/lib/types/home'
-import { useAllPages } from '@/queries/useHome'
-import { useLocale } from 'next-intl'
-import Image from 'next/image'
+"use client";
+import { PageData } from "@/lib/types/home";
+import { useAllPages } from "@/queries/useHome";
+import { useLocale, useTranslations } from "next-intl";
+import Image from "next/image";
 
 export default function Block() {
-  const lang = useLocale()
-  const { data } = useAllPages(lang as 'en' | 'fr') as {
-    data: PageData | undefined
-    isPending: boolean
-  }
+  const t = useTranslations();
+  const lang = useLocale();
+  const { data } = useAllPages(lang as "en" | "fr") as {
+    data: PageData | undefined;
+    isPending: boolean;
+  };
   return (
     <section className="pt-20 ct-container">
       <div className="flex flex-nowrap items-center justify-center gap-10 w-full">
         <div className="hidden sm:block w-full h-[1px] bg-[#BBB]"></div>
-        <h2 className="text-[24px] leading-normal sm:text-[32px] md:text-[40px] xl:text-[52px] font-semibold sm:leading-[60px] uppercase text-acent text-center break-words max-w-full sm:max-w-[70%]">
-          {data?.payload[0]?.bloc_1?.title}
+        <h2 className="text-[24px] leading-normal sm:text-[32px] md:text-[40px] xl:text-[52px] font-semibold sm:leading-[60px] uppercase text-acent text-center  max-w-full sm:max-w-[70%] whitespace-nowrap">
+          {t("Title1")}
         </h2>
         <div className="hidden sm:block w-full h-[1px] bg-[#BBB]"></div>
       </div>
@@ -29,7 +30,7 @@ export default function Block() {
             key={item.category}
             // className="flex flex-col"
             className={`flex flex-col ${
-              index === 1 ? 'sm:-translate-y-8 md:-translate-y-[45px]' : ''
+              index === 1 ? "sm:-translate-y-8 md:-translate-y-[45px]" : ""
             }`}
           >
             <div className="relative w-full aspect-square flex">
@@ -54,11 +55,16 @@ export default function Block() {
             </div>
             <button className="inline-flex items-center justify-center max-w-max gap-2 px-3 py-2 sm:px-4 sm:py-2.5 xl:px-4 xl:py-2.5 mt-[35px] sm:mt-4 xl:mt-6 rounded-[100px] border border-[rgba(86,44,44,0.30)]  text-[16px] xl:text-[18px] font-medium leading-5 capitalize w-auto">
               {item.cta}
-              <Image src="/icons/ArrowUpRight.svg" alt="ArrowUpRight" width="20" height="20" />
+              <Image
+                src="/icons/ArrowUpRight.svg"
+                alt="ArrowUpRight"
+                width="20"
+                height="20"
+              />
             </button>
           </li>
         ))}
       </ul>
     </section>
-  )
+  );
 }
