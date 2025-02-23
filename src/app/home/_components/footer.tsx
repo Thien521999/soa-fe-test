@@ -40,7 +40,7 @@ export default function Footer() {
           <ul className="sm:hidden flex items-center justify-center gap-4">
             <li className="bg-acent w-8 h-8 rounded-full flex items-center justify-center">
               <Image
-                src="/icons/facebook.svg"
+                src="/icons/icon_facebook.svg"
                 alt="facebook"
                 width="24"
                 height="24"
@@ -48,7 +48,7 @@ export default function Footer() {
             </li>
             <li className="bg-acent w-8 h-8 rounded-full flex items-center justify-center">
               <Image
-                src="/icons/instagram.svg"
+                src="/icons/icon_instagram.svg"
                 alt="facebook"
                 width="24"
                 height="24"
