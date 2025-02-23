@@ -1,9 +1,7 @@
 "use client";
 
-import { PageData } from "@/lib/types/home";
-import { useAllPages } from "@/queries/useHome";
 import { motion } from "framer-motion";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -15,12 +13,6 @@ export default function Map() {
     y: number;
   } | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
-  const lang = useLocale();
-  const { data } = useAllPages(lang as "en" | "fr") as {
-    data: PageData | undefined;
-    isPending: boolean;
-  };
 
   const points = [
     {
