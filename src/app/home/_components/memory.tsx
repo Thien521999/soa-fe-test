@@ -1,23 +1,23 @@
-'use client'
+"use client";
 
-import { PageData } from '@/lib/types/home'
-import { useAllPages } from '@/queries/useHome'
-import { motion } from 'framer-motion'
-import { useLocale } from 'next-intl'
-import Image from 'next/image'
+import { PageData } from "@/lib/types/home";
+import { useAllPages } from "@/queries/useHome";
+import { motion } from "framer-motion";
+import { useLocale } from "next-intl";
+import Image from "next/image";
 
-export default function Menory() {
-  const lang = useLocale()
-  const { data } = useAllPages(lang as 'en' | 'fr') as {
-    data: PageData | undefined
-    isPending: boolean
-  }
+export default function Memory() {
+  const lang = useLocale();
+  const { data } = useAllPages(lang as "en" | "fr") as {
+    data: PageData | undefined;
+    isPending: boolean;
+  };
 
   return (
     <motion.section
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
       className="py-8 sm:py-12 md:py-[60px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-white bg-[#EAFCFF]"
     >
       <div className="max-w-[1304px] px-0 sm:px-8 lg:px-8 w-full mx-auto">
@@ -26,7 +26,8 @@ export default function Menory() {
             {data?.payload[0]?.bloc_3.title}
           </p>
           <p className="text-[24px] md:text-[40px] font-semibold leading-[42px] xl:leading-[54px] uppercase">
-            {data?.payload[0]?.bloc_3?.more_info} <span className="text-acent">#BASIC</span>
+            {data?.payload[0]?.bloc_3?.more_info}{" "}
+            <span className="text-acent">#BASIC</span>
           </p>
         </div>
         <div className="mt-8 mb-[22px]">
@@ -57,14 +58,17 @@ export default function Menory() {
 
               <div className="px-[14px] pt-3">
                 <div className="relative flex items-center justify-between">
-                  <h4 className="text-[16px] xl:text-[24px] text-black font-semibold">La famile</h4>
+                  <h4 className="text-[16px] xl:text-[24px] text-black font-semibold">
+                    La famile
+                  </h4>
                   <button className="w-auto text-black border border-[rgba(102, 102, 102, 0.10)] h-[42px] text-[14px] sm:text-[16px] md:text-[20px] px-2 py-1 sm:px-4 sm:py-[6px] rounded-[20px] flex items-center justify-center tracking-[-0.14px]">
                     24 Sep 2024
                   </button>
                 </div>
                 <p className="mt-1 text-[14px] sm:text-[16px] xl:text-[18px] leading-6 text-[#666] max-w-[660px]">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse harum repellat
-                  saepe, tempore a natus! Aspernatur temporibus libero,
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse
+                  harum repellat saepe, tempore a natus! Aspernatur temporibus
+                  libero,
                 </p>
               </div>
             </div>
@@ -82,12 +86,12 @@ export default function Menory() {
               <Image
                 src={
                   index === 0
-                    ? '/images/avocado.jpg'
+                    ? "/images/avocado.jpg"
                     : index === 1
-                    ? '/images/apple.jpg'
+                    ? "/images/apple.jpg"
                     : index === 2
-                    ? '/images/orange.jpg'
-                    : '/images/orange2.jpg'
+                    ? "/images/orange.jpg"
+                    : "/images/orange2.jpg"
                 }
                 fill
                 className="object-cover rounded-[10px] sm:rounded-[20px] h-full"
@@ -102,7 +106,7 @@ export default function Menory() {
               >
                 <p className="flex gap-2 items-center justify-start">
                   <Image
-                    src={'/icons/Instagram.svg'}
+                    src={"/icons/Instagram.svg"}
                     width="28"
                     height="28"
                     className="w-[16px] h-[16px] sm:w-[24px] sm:h-[24px] xl:w-[28px] xl:h-[28px]"
@@ -124,10 +128,10 @@ export default function Menory() {
           ))}
         </ul>
         <p className="mt-8 xl:mt-12 text-[14px] xl:text-[24px] sm:text-center xl:text-left text-[#666] tracking-[-0.24px] px-4 sm:px-0">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam officiis veritatis
-          labore? Ut eius quo.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+          officiis veritatis labore? Ut eius quo.
         </p>
       </div>
     </motion.section>
-  )
+  );
 }

@@ -12,7 +12,6 @@ export default function Explore() {
     data: PageData | undefined;
     isPending: boolean;
   };
-  console.log(data);
   return (
     <aside className="bg-white">
       <section className="w-full h-[483px] sm:h-[524px] xl:h-[666px] relative flex items-center justify-center ">

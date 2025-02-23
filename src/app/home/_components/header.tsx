@@ -1,16 +1,12 @@
 "use client";
 
 import LocaleSwicher from "@/components/ui/LocaleSwicher";
+import { PageData } from "@/lib/types/home";
+import { motion } from "framer-motion";
 import { useLocale } from "next-intl";
 import Image from "next/image";
 import { useAllPages } from "../../../queries/useHome";
 import Menu from "./menu";
-
-interface PageData {
-  payload: {
-    head_menu: string[];
-  }[];
-}
 
 export default function Header() {
   const lang = useLocale();
@@ -22,7 +18,12 @@ export default function Header() {
 
   return (
     <div className="w-full">
-      <header className="fixed top-0 left-0 w-full shadow-md z-[1000] h-[48px] sm:h-[60px] md:h-[56px] lg:h-[72px] border-b border-[rgba(238,238,238,0.20)] bg-[rgba(86,44,44,0.70)] backdrop-blur-[7.5px]">
+      <motion.header
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="fixed top-0 left-0 w-full shadow-md z-[1000] h-[48px] sm:h-[60px] md:h-[56px] lg:h-[72px] border-b border-[rgba(238,238,238,0.20)] bg-[rgba(86,44,44,0.70)] backdrop-blur-[7.5px]"
+      >
         <nav className="max-w-[1304px] mx-auto flex justify-between items-center h-full px-4 sm:px-8 lg:px-8">
           {/* Logo */}
           <div className="pr-3 xl:pr-0 text-[10.5px] sm:text-[15px] md:text-[10.5px] lg:text-[15px] font-bold hover:opacity-80 text-white cursor-pointer">
@@ -85,12 +86,12 @@ export default function Header() {
                 alt="menu"
                 width="24"
                 height="24"
-                className="block md:hidden"
+                className="block md:hidden cursor-pointer"
               />
             </label>
           </div>
         </nav>
-      </header>
+      </motion.header>
 
       {/* Menu Mobile */}
       <Menu menu={data?.payload[0]?.head_menu as string[]} />
